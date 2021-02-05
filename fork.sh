@@ -7,7 +7,7 @@ modname=$2
 # Replace release link + CI badge
 sed -i README.md -e "s/DeltaNedas/$username/g"
 # Replace mod name
-sed -i $(find . -type f) -e "s/ExampleJavaMod/$modname/g"
+sed -i $(find . -type f -not -path '*/\.git/*') -e "s/ExampleJavaMod/$modname/g"
 # Rename main class (youll have to rename the package yourself)
 mv src/example/ExampleJavaMod.java "src/example/$modname.java"
 # Change remote for quick pushing
