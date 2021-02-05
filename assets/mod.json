@@ -1,0 +1,9 @@
+{
+	"name": "example-java-mod",
+	"displayName": "Example Java Mod",
+	"author": "DeltaNedas",
+	"main": "example.ExampleJavaMod",
+	"description": "A jar mod. Glory to the cat",
+	"version": "1.0.1",
+	"minGameVersion": 105
+}
