@@ -5,7 +5,7 @@ username=$1
 modname=$2
 
 # Replace release link + CI badge
-sed -i README.md -e "s/DeltaNedas/$username/g"
+sed -i README.md fork.sh -e "s/DeltaNedas/$username/g"
 # Replace mod name
 sed -i $(find . -type f -not -path '*/\.git/*') -e "s/ExampleJavaMod/$modname/g"
 # Rename main class (youll have to rename the package yourself)
