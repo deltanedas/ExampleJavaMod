@@ -4,6 +4,6 @@
 	"author": "DeltaNedas",
 	"main": "example.ExampleJavaMod",
 	"description": "A jar mod. Glory to the cat",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"minGameVersion": 105
 }
