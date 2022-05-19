@@ -56,10 +56,8 @@ ExampleJavaMod-Desktop.jar: $(classes) $(assets)
 	jar -cf $@ $(JARFLAGS) || rm $@
 
 ExampleJavaMod.jar: ExampleJavaMod-Desktop.jar
-	$(eval D8Dependencies := $(foreach f,$(libs),--classpath $f))
-	$(eval D8Dependencies += --classpath $(shell find $(ANDROID_HOME)/platforms -name android.jar | head -n 1))
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
-	$(D8) $(D8Dependencies) $(D8FLAGS) --output build $^
+	$(D8) $(D8FLAGS) --output build $^
 	cp ExampleJavaMod-Desktop.jar $@
 	cd build; zip -qg ../$@ classes.dex
 
