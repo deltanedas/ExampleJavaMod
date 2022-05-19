@@ -34,7 +34,7 @@ libs/$(1).jar:
 	@printf "\033[33m> LIB\033[0m\t%s\n" $$@
 	@mkdir -p $$(@D)
 	@curl 'https://jitpack.io/com/github/$(2)/$(3)/$(4)/$(3)-$(4).jar.sha1' -so $$@.sha1
-	curl 'https://jitpack.io/com/github/$(2)/$(3)/$(4)/$(3)-$(4).jar' -so $$@
+	@curl 'https://jitpack.io/com/github/$(2)/$(3)/$(4)/$(3)-$(4).jar' -so $$@
 	@printf "\t%s" "$$@" >> $$@.sha1
 	@sha1sum -c $$@.sha1 || (rm $$@ && exit 1)
 	@rm $$@.sha1
@@ -49,17 +49,17 @@ android: build ExampleJavaMod.jar
 build/classes/%.class: src/%.java $(libs)
 	@printf "\033[32m> JAVAC\033[0m\t%s\n" $@
 	@mkdir -p `dirname $@`
-	$(JAVAC) $(JAVACFLAGS) $< -d build/classes
+	@$(JAVAC) $(JAVACFLAGS) $< -d build/classes
 
 ExampleJavaMod-Desktop.jar: $(classes) $(assets)
 	@printf "\033[33m> JAR\033[0m\t%s\n" $@
-	jar -cf $@ $(JARFLAGS) || rm $@
+	@jar -cf $@ $(JARFLAGS) || rm $@
 
 ExampleJavaMod.jar: ExampleJavaMod-Desktop.jar
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
-	$(D8) $(D8FLAGS) --output build $^
-	cp ExampleJavaMod-Desktop.jar $@
-	cd build; zip -qg ../$@ classes.dex
+	@$(D8) $(D8FLAGS) --output build $^
+	@cp ExampleJavaMod-Desktop.jar $@
+	@cd build; zip -qg ../$@ classes.dex
 
 install: build
 	cp ExampleJavaMod-Desktop.jar $(MINDUSTRY)/mods
