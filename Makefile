@@ -20,8 +20,9 @@ classes := $(patsubst src/%.java, build/classes/%.class, $(sources))
 D8 := d8
 D8FLAGS := --min-api 14
 
-# Mindustry + arc version to link against
-version := v123
+# Mindustry & arc version to link against
+mindustryVersion := 0fa26b1b0f
+arcVersion := dfcb21ce56
 
 all: build
 
@@ -39,8 +40,8 @@ libs/$(1).jar:
 	@rm $$@.sha1
 endef
 
-$(eval $(call newlib,core-release,Anuken/Mindustry,core,$(version)))
-$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(version)))
+$(eval $(call newlib,core-release,Anuken/MindustryJitpack,core,$(mindustryVersion)))
+$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(arcVersion)))
 
 build: ExampleJavaMod-Desktop.jar
 android: build ExampleJavaMod.jar
