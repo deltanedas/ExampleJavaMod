@@ -5,5 +5,5 @@
 	"main": "example.ExampleJavaMod",
 	"description": "A jar mod. Glory to the cat",
 	"version": "1.0.3",
-	"minGameVersion": 105
+	"minGameVersion": 126
 }
