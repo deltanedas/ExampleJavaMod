@@ -20,8 +20,9 @@ classes := $(patsubst src/%.java, build/classes/%.class, $(sources))
 D8 := d8
 D8FLAGS := --min-api 14
 
-# Mindustry + arc version to link against
-version := v123
+# Mindustry & arc version to link against
+mindustryVersion := 0fa26b1b0f
+arcVersion := dfcb21ce56
 
 all: build
 
@@ -39,8 +40,8 @@ libs/$(1).jar:
 	@rm $$@.sha1
 endef
 
-$(eval $(call newlib,core-release,Anuken/Mindustry,core,$(version)))
-$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(version)))
+$(eval $(call newlib,core-release,Anuken/MindustryJitpack,core,$(mindustryVersion)))
+$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(arcVersion)))
 
 build: ExampleJavaMod-Desktop.jar
 android: build ExampleJavaMod.jar
@@ -55,8 +56,10 @@ ExampleJavaMod-Desktop.jar: $(classes) $(assets)
 	jar -cf $@ $(JARFLAGS) || rm $@
 
 ExampleJavaMod.jar: ExampleJavaMod-Desktop.jar
+	$(eval D8Dependencies := $(foreach f,$(libs),--classpath $f))
+	$(eval D8Dependencies += --classpath $(shell find $(ANDROID_HOME)/platforms -name android.jar | head -n 1))
 	@printf "\033[33m> D8\033[0m\t%s\n" $@
-	$(D8) $(D8FLAGS) --output build $^
+	$(D8) $(D8Dependencies) $(D8FLAGS) --output build $^
 	cp ExampleJavaMod-Desktop.jar $@
 	cd build; zip -qg ../$@ classes.dex
 
