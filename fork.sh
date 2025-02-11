@@ -11,4 +11,4 @@ sed -i $(find . -type f -not -path '*/\.git/*') -e "s/ExampleJavaMod/$modname/g"
 # Rename main class (youll have to rename the package yourself)
 mv src/example/ExampleJavaMod.java "src/example/$modname.java"
 # Change remote for quick pushing
-git remote set-url origin "ssh://git@github.com/$username/$modname"
+git remote set-url origin "git@github.com:$username/$modname.git"
