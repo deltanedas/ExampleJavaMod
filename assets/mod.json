@@ -1,7 +1,7 @@
 {
 	"name": "example-java-mod",
 	"displayName": "Example Java Mod",
-	"author": "DeltaNedas",
+	"author": "deltanedas",
 	"main": "example.ExampleJavaMod",
 	"description": "A jar mod. Glory to the cat",
 	"version": "2.1.0",
