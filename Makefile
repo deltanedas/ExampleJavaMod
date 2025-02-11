@@ -20,13 +20,12 @@ classes := $(patsubst src/%.java, build/classes/%.class, $(sources))
 D8 := d8
 D8FLAGS := --min-api 14
 
-# Mindustry & arc version to link against
-mindustryVersion := 0fa26b1b0f
-arcVersion := dfcb21ce56
+# Mindustry + arc version to link against
+version := v146
 
 all: build
 
-libs := core-release arc-core
+libs := core-release arc-core # annotations
 libs := $(libs:%=libs/%.jar)
 
 define newlib
@@ -40,11 +39,12 @@ libs/$(1).jar:
 	@rm $$@.sha1
 endef
 
-$(eval $(call newlib,core-release,Anuken/MindustryJitpack,core,$(mindustryVersion)))
-$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(arcVersion)))
+$(eval $(call newlib,core-release,Anuken/Mindustry,core,$(version)))
+$(eval $(call newlib,arc-core,Anuken/Arc,arc-core,$(version)))
+$(eval $(call newlib,annotations,Anuken/Mindustry,annotations,$(version)))
 
 build: ExampleJavaMod-Desktop.jar
-android: build ExampleJavaMod.jar
+android: ExampleJavaMod.jar
 
 build/classes/%.class: src/%.java $(libs)
 	@printf "\033[32m> JAVAC\033[0m\t%s\n" $@
