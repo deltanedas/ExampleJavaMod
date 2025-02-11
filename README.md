@@ -1,4 +1,5 @@
-![Github Workflows](https://github.com/deltanedas/ExampleJavaMod/workflows/Releases%20CI/badge.svg)
+![Release CI Workflow](https://github.com/deltanedas/ExampleJavaMod/workflows/Releases%20CI/badge.svg)
+![Push CI Workflow](https://github.com/deltanedas/ExampleJavaMod/workflows/Unstable%20CI/badge.svg)
 
 # ExampleJavaMod
 
@@ -9,8 +10,9 @@ Download a precompiled build [here](https://github.com/deltanedas/ExampleJavaMod
 
 ## Building for Desktop Testing
 
-1. Install JDK 14 and curl. If you don't know how, look it up. If you already have any version of the JDK >= 8, that works as well.
-On Debian unstable, `# apt install openjdk-14-jdk-headless curl`
+1. Install JDK 17 and curl. If you don't know how, look it up. If you already have any version of the JDK >= 8, that works as well.
+On Debian unstable, `# apt install openjdk-17-jdk-headless curl`
+On Void, `# xi openjdk-17 curl`
 2. Run `$ make install`
 3. Test the desktop-only version that has been installed.
 To build an Android-compatible version, you need the Android SDK. You can either let Github Actions handle this, or set it up yourself. See steps below.
@@ -34,6 +36,6 @@ This approach is more painful
 3. Add a build-tools folder to your PATH. For example, if you have `30.0.1` installed, that would be `$ANDROID_HOME/build-tools/30.0.1`.
 4. Run `$ make`. If you did everything correctly, this will create a jar file that can be run on both Android and desktop. 
 
---- 
+---
 
 *[1]: Yes, I know this is stupid. It's a Github UI limitation - while the jar itself is uploaded unzipped, there is currently no way to download it as a single file.*
